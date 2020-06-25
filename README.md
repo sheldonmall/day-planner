@@ -1,4 +1,4 @@
-# This is unit 05 Third Party APIs Homework: Day Planner
+# This is homework for: Unit 05 Third Party APIs
 
 ## Website URL
 
@@ -11,9 +11,11 @@ There are no specific steps to install this website, nor are there any installab
 
 ## Usage 
 
-This website is for a day planner. The usage of this tool is described below:
+This website is for: Day Planner. 
 
-When the page loads, you will see the landing page that shows the day planner. 
+The usage of this application is described below:
+
+When the page loads, it will take you to the landing page. 
 
 * You will see the following:
 - Hourly slots starting from 9AM till 5PM.
@@ -25,7 +27,7 @@ The application work as given below:
 - Enter your planned task in the correct time slot text box. 
 - Click on the `Add` button to save the task. 
 
-My Task list for developing this password generator:
+My Task list for developing this application:
 
 [x] Building the page
 

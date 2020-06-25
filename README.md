@@ -22,16 +22,17 @@ When the page loads, it will take you to the landing page.
 - Text box to enter your tasks.
 - `Add` button to save your entered task.
  
-The application work as given below:
-
+* The application works as given below:
 - Enter your planned task in the correct time slot text box. 
 - Click on the `Add` button to save the task. 
 
 My Task list for developing this application:
 
-[x] Building the page
+[x] Building the required page
 
 [ ] Display today's date and time
+
+[ ] Display different colors for previous, current and future hours.
 
 [ ] Display previously saved tasks in their respective time slot.
 
@@ -57,6 +58,6 @@ There is no need for any license at the moment to use my website.
 
 My website is simple to use. 
 
-The website is not fully working as I am not able to complete it. First, I struggled to display the HTML page, then displaying saved tasks from the local storage. 
+The website is not fully working as I am not able to complete all requirements. First, I struggled to display the HTML page correctly, then displaying saved tasks from the local storage. 
 
 I will continue to debug the issue to make the code work after this assignment is submitted.

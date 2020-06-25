@@ -30,18 +30,17 @@
     </header>
     
     <div class="container">
-      <!-- Timeblocks go here -->      
-      <ul id="day-list">
-      </ul>            
+      <!-- Timeblocks go here -->        
     </div>
     <script type="text/javascript"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
     var timeSlot=
-      ["09:00", "10:00", "11:00", "12:00",
-      "13:00", "14:00", "15:00", "16:00"];
-    var myTasks=["Go to office","Meet team","Produce reports"];    
-    var taskList=$("#day-list");   
+      [9, 10, 11, 12, 1, 2, 3, 4];
+    //   ["09:00", "10:00", "11:00", "12:00",
+    //   "13:00", "14:00", "15:00", "16:00"];
+    var myTasks=["Go to office","Meet team","","Produce reports"];    
+    var taskList=$(".container");   
     $(document).ready(function() 
     {           
       init(); // function GETS localStorage array, if available      
@@ -50,42 +49,56 @@
     function init() 
     {
       // Get stored appointments from localStorage     
-      var storedTasks = localStorage.getItem("dayTasks");
+      var storedTasks = JSON.parse(localStorage.getItem("dayTasks"));
       if (storedTasks !== null) 
       {
         myTasks = storedTasks;
-        console.log("myTasks: "+ myTasks);
-      }   
-      else
+      }         
+      else // entering some default values if there is nothing in localStorage.
       {
-        localStorage.setItem("dayTasks", myTasks);      
-      }
+        localStorage.setItem("dayTasks", JSON.stringify(myTasks));      
+      }   
       renderTasks(); 
     }
     //----------------
     function renderTasks() // Function renders tasks to the DOM
-    {      
-      for(var n=0;n<myTasks.length;n++)
-      {
-        console.log(myTasks[n]);
-      }
+    {            
       // Clear taskList element
       taskList.innerHTML = "";           
       for(var ctr=0;ctr<timeSlot.length;ctr++)
       {    
-        console.log("inside loop"+ timeSlot[ctr]);
-        var varRow=$("<li class='hour-row'>");
-        var varTime=$("<p class='col-lg-2 time-slot'>").text(timeSlot[ctr]);        
-        var varAppointment=$("<input type='text' class='col-lg-8 appointment-text'>").val(myTasks[ctr]);          
-        var varSave=$("<button class='col-lg-2 btn btn-success time-save'>").text("Save");          
+
+        console.log("inside loop"+ timeSlot[ctr]);        
+        var varRow=$("<div class='row'>");       
+        var varTime=$("<div class='col-lg-2 time-slot' style='display: flex; align-items: center'>").text(timeSlot[ctr]+":00");  
+        varTime.attr('id', ctr);        
+        var varAppointment=$("<input type='text' class='col-lg-8 appointment-text'>").val(myTasks[ctr]).text(myTasks[ctr]);        
+        varAppointment.attr('id', timeSlot[ctr]);         
+        var varSave=$("<button class='col-lg-2 btn btn-success btn-save'>").text("Save");         
+        varSave.attr('id', timeSlot[ctr]);    
         varRow.append(varTime,varAppointment,varSave);
         taskList.append(varRow);
       }
-      $(".time-save").on("click", function()
-      {
-        console.log("inside button");
+      $(".btn-save").on("click", function()
+      {        
+        console.log("inside button"); // delete after testing
+        var inputValue = this.id;        
+        // var inputValue = $('#input' + this.id).text();        
+        console.log(inputValue);
+        console.log(this.id) // showing time selected     
+        var nCtr=timeSlot.indexOf(this.id);
+        myTasks[nCtr]=$(".appointment-text"+inputValue).text();         
+        
+        // myTasks[nCtr]=inputValue;
+        // localStorage.setItem(inputValue);
       })
-      //
+      //Things to figure out:
+      //You need to save your tasks in an array, this array will be stringified in order to save it in local storage
+      //After getting it back, for example, in the beginning when you check for it, you will need to parse it so 
+      //it looks like an array again, that way, you can add it to the corresponding boxes
+
+      //This is where changing the input's ids will come in, because you will need to make them match with the correct
+      // time they belong to
 
       
     }

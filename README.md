@@ -2,7 +2,7 @@
 
 ## Website URL
 
-My code quiz website can be found at:  
+My day planner website can be found at: https://sheldonmall.github.io/day-planner/
 
 ## Installation
 

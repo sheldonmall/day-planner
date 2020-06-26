@@ -19,6 +19,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
     <title>Work Day Scheduler</title>
   </head>
 
@@ -43,6 +44,7 @@
     var taskList=$(".container");   
     $(document).ready(function() 
     {           
+      $("#currentDay").text("Today's Date: "+moment().format("MMM Do YYYY"));
       init(); // function GETS localStorage array, if available      
     });
     //-----------------
@@ -71,9 +73,16 @@
         console.log("inside loop"+ timeSlot[ctr]);        
         var varRow=$("<div class='row'>");       
         var varTime=$("<div class='col-lg-2 time-slot' style='display: flex; align-items: center'>").text(timeSlot[ctr]+":00");  
-        varTime.attr('id', ctr);        
-        var varAppointment=$("<input type='text' class='col-lg-8 appointment-text'>").val(myTasks[ctr]).text(myTasks[ctr]);        
-        varAppointment.attr('id', timeSlot[ctr]);         
+        varTime.attr('id', ctr); 
+        var varHour=moment().hour(); 
+        var varAppointment=$("<input type='text' class='col-lg-8 appointment-text'>").val(myTasks[ctr]);
+        if(varHour>timeSlot[ctr])
+        {
+          console.log(varHour+" "+timeSlot[ctr]);
+          $(".appointment-text").attr("style", "background:red");
+        }      
+                
+        varAppointment.attr('id', "input"+timeSlot[ctr]);         
         var varSave=$("<button class='col-lg-2 btn btn-success btn-save'>").text("Save");         
         varSave.attr('id', timeSlot[ctr]);    
         varRow.append(varTime,varAppointment,varSave);
@@ -82,15 +91,16 @@
       $(".btn-save").on("click", function()
       {        
         console.log("inside button"); // delete after testing
-        var inputValue = this.id;        
-        // var inputValue = $('#input' + this.id).text();        
+        // var inputValue = this.id;        
+        var inputValue = $('#input' + this.id).val();        
         console.log(inputValue);
         console.log(this.id) // showing time selected     
-        var nCtr=timeSlot.indexOf(this.id);
+        var nCtr=timeSlot.indexOf(parseInt(this.id));
+        console.log(nCtr);
         myTasks[nCtr]=$(".appointment-text"+inputValue).text();         
-        
-        // myTasks[nCtr]=inputValue;
-        // localStorage.setItem(inputValue);
+        myTasks[nCtr]
+        myTasks[nCtr]=inputValue;
+        localStorage.setItem("dayTasks", JSON.stringify(myTasks));
       })
       //Things to figure out:
       //You need to save your tasks in an array, this array will be stringified in order to save it in local storage

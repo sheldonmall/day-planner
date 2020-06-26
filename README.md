@@ -30,13 +30,13 @@ My Task list for developing this application:
 
 [x] Building the required page
 
-[ ] Display today's date and time
+[x] Display today's date and time
 
-[ ] Display different colors for previous, current and future hours.
+[x] Display different colors for previous, current and future hours.
 
-[ ] Display previously saved tasks in their respective time slot.
+[x] Display previously saved tasks in their respective time slot.
 
-[ ] Code and test the `Add` button.
+[x] Code and test the `Add` buttons.
 
 [ ] User feedback 
 
@@ -58,6 +58,6 @@ There is no need for any license at the moment to use my website.
 
 My website is simple to use. 
 
-The website is not fully working as I am not able to complete all requirements. First, I struggled to display the HTML page correctly, then displaying saved tasks from the local storage. 
+The website is fully working and I am  able to complete all requirements. At first, I struggled to display the HTML page correctly and displaying saved tasks from the local storage due to my logic, but got review and help from my TA. 
 
-I will continue to debug the issue to make the code work after this assignment is submitted.
+I will continue to improve the code work after this assignment is submitted.
